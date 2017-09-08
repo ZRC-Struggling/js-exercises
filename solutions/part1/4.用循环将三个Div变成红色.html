@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>用循环将三个DIv变成红色</title>
+	<style>
+		.wrap{
+			width: 800px;
+			margin: 20px auto;
+			text-align: center;
+		}
+		.wrap div{
+			display: inline-block;
+			width: 100px;
+			height: 100px;
+			background-color: black;
+		}
+		.wrap .btn-group{
+			display: block;
+			width: 100%;
+			height: 100%;
+			line-height:42px;
+			background-color: inherit;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="wrap">
+		<div class="btn-group">
+			<input type="button" value="变红">
+			<input type="button" value="复原">
+		</div>	
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+	
+	<script>
+		window.onload = function () {
+			var btns = document.querySelectorAll("input");
+			var divs = document.querySelectorAll(".wrap div");
+
+			var changeStyle = function (prop, val) {
+				return function () {
+						for(var i = 1, len = divs.length;i < len;i++){
+							divs[i].style[prop] = val;
+						}
+					};
+			}
+
+			btns[0].onclick = changeStyle("background-color", "red");
+			btns[1].onclick = changeStyle("cssText", "");
+		}
+	</script>
+</body>
+</html>
