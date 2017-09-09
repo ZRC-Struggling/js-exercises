@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>点击Div显示其innerHTML</title>
+	<style>
+		.wrap{
+			width:600px;
+			margin: 0 auto;
+		}
+		.wrap h1{
+			text-align: center;
+		}
+		.wrap div{
+			width: 500px;
+			margin: 0 auto 20px;
+			padding: 5px 10px;
+			border: 3px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="wrap">
+		<h1>前端界的高手们</h1>
+		<div>
+			蒋长浩，祖籍湖南，获清华大学计算机本硕学位、伊利诺伊大学(UIUC)博士学位，在卡耐基梅隆大学(CMU)、谷歌公司从事过“普适计算~大规模计算”的优化研究。在Facebook任研究科学家，他创造BIGPIPE，使大型网站访速翻1倍，举世关注。
+		</div>
+		<div>
+			钱宝坤 新浪微博</br>
+
+			微博：貘吃馍香</br>
+
+			博客：http://w3help.org</br>
+
+			混迹于IT行业多年的普通程序员，偏好浏览器相关内容研究。w3help.org文章内容主要提供者之一。现就职于新浪微博前端基础架构组，参与微博前端公用组件开发，以及前端工具开发相关工作。
+		</div>
+		<div>
+			嗷嗷 淘宝网</br>
+
+			微博：aoao</br>
+
+			博客：http://www.aoao.org.cn</br>
+
+			介绍：从事前端开发多年，期间做过设计转过产品，混过后端，写过《Web标准设计》一书。目前就职于淘宝网，主要负责前端性能监控、优化等前端开发相关的工作。
+		</div>
+		<div>
+			田永强 淘宝网
+
+			微博：shyvo</br>
+
+			博客：http://blog.html5ify.com</br>
+
+			JavaScripter，专注前端和Node.js开发。乐于分享。</br>
+		</div>
+	</div>
+
+	<script>
+		window.onload = function () {
+			// var divs = document.querySelectorAll(".wrap div");
+			// divs.forEach(function (ele) {
+			// 	ele.onclick = function () {
+			// 		alert(this.innerHTML);
+			// 	}
+			// });
+			var wrap = document.querySelector(".wrap");
+			wrap.onclick = function (e) {
+				alert(e.target.innerHTML);
+			}
+		}
+	</script>
+	
+</body>
+</html>
