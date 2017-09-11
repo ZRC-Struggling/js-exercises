@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="red.css" id="skinStyleSheet">
+	<title>网页换肤</title>
+</head>
+<body>
+	
+	<header>
+		<div class="skin">
+			<div class="red"></div>
+			<div class="green"></div>
+			<div class="black"></div>
+		</div>
+		<nav>
+			<div>技术</div>
+			<div>生活</div>
+			<div>军事</div>
+			<div>历史</div>
+			<div>其它</div>
+		</nav>
+	</header>
+
+
+	<script>
+		/*网页换肤，当需要更新的样式较多时，采用切换样式表的方式*/
+		window.onload = function () {
+			var skinLink = document.querySelector("#skinStyleSheet");
+			var skinBtns = document.querySelectorAll(".skin div");
+			skinBtns.forEach(function (skinBtn) {
+				skinBtn.onclick = function () {
+					var that = this;
+					skinBtns.forEach(function (ele) {
+						ele.style.backgroundColor = ele.className;
+						that.style.backgroundColor = "white";
+					});
+					skinLink.href = skinBtn.className + ".css";
+				};
+			});
+		};
+
+		/*网页换肤，当需要更新的样式较少时，直接用js修改部分样式，以此减少http请求数*/
+		// window.onload = function () {
+		// 	var body = document.body,
+		// 		navDivs = document.querySelectorAll("nav div"),
+		// 		styleBtns = document.querySelectorAll(".skin div"),
+		// 		styleObj = {
+		// 					"red":  ["#fdd", "red"],
+		// 					"green":["#a3c5a8", "green"],
+		// 					"black":["#ccc", "black"]
+		// 		};
+
+		// 	function setStyle (style, that) {
+		// 		var styles = styleObj[style];
+		// 			styleBtns.forEach(function (ele) {
+		// 				ele.style.backgroundColor = ele.className;
+		// 			});
+		// 			that.style.backgroundColor = "white";
+		// 			body.style.backgroundColor = styles[0];
+		// 			navDivs.forEach(function (ele) {
+		// 				ele.style.backgroundColor = styles[1];
+		// 			});
+		// 	}
+
+		// 	setStyle("green", styleBtns[1]);
+		// 	styleBtns.forEach(function (ele) {
+		// 		ele.onclick = function () {
+		// 			setStyle(ele.className, this);
+		// 		}
+		// 	});
+		// }
+	</script>
+</body>
+</html>
