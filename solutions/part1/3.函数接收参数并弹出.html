@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>函数接收参数并弹出</title>
+	<style>
+		.wrap{
+			width: 800px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		#city, #distinct{
+			padding-left: 8px;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="wrap">
+		<p><input type="text" id="city" value="北京市"></p>
+		<p><input type="text" id="distinct" value="朝阳区"></p>
+		<p><button id="btn">传参</button></p>
+	</div>
+
+	<script>
+		window.onload = function () {
+			var btn = document.getElementById("btn"),
+				city = document.getElementById("city"),
+				distinct = document.getElementById("distinct");
+
+			function showMsg (arg1, arg2) {
+				alert(arg1);
+				alert(arg2);
+			}
+
+			btn.onclick = function () {
+				showMsg(city.value, distinct.value);
+			}
+		}
+	</script>
+</body>
+</html>
