@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>百度输入法</title>
+	<style>
+		body{
+			font-size: 16px;
+		}
+		.wrap{
+			width: 100px;
+			margin: 0 auto;
+		}
+		#shurufa{
+			display: none;
+			width: 80px;
+			border: 1px solid blue;
+			margin-top: 5px;
+		}
+		#shurufa div{
+			line-height: 26px;
+		}
+		a{
+			text-decoration: none;
+			display: block;
+			/*padding: 5px;*/
+			text-align: center;
+		}
+		a:hover{
+			background-color: blue;
+			color: white;
+		}
+		#closeBtn{
+			border-top: 1px solid blue;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="wrap">
+		<button id="btn">输入法</button>
+		<div id="shurufa">
+			<div><a href="#">手写</a></div>
+			<div><a href="#">拼音</a></div>
+			<div><a href="#" id="closeBtn">关闭</a></div>
+		</div>
+	</div>
+
+	<script>
+		window.onload = function () {
+			var btn = document.querySelector("#btn");
+			var shurufa = document.querySelector("#shurufa");
+			var closeBtn = document.querySelector("#closeBtn");
+			var style = shurufa.style;
+
+			btn["onclick"] = function () {
+				style.display = (style.display === "block" ? "none" : "block");
+			}
+			closeBtn.onclick = function () {
+				style.display = "none";
+			}
+
+		}
+	</script>
+</body>
+</html>

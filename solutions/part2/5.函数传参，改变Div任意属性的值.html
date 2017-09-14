@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>函数传参，改变Div任意属性的值</title>
+	<style>
+		.container{
+			width: 300px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		.container div{
+			margin-bottom: 10px;
+		}
+		#area{
+			display: inline-block;
+			width: 200px;
+			height: 200px;
+			background-color: black;
+			color: white;
+			text-align: left;
+			padding: 0 20px;
+		}
+
+	</style>
+</head>
+<body>
+	
+
+	<div class="container">
+		<div>
+			属性名： <input type="text" id="attr-name">
+		</div>
+		<div>
+			属性值： <input type="text" id="attr-val">
+		</div>
+		<div>
+			<button id="confirm">确定</button>
+			<button id="reset">重置</button>
+		</div>
+		<div id="area">
+			<p>在上方输入框输入“属性名”及“属性值”，点击确定按钮查看效果。</p>
+		</div>
+	</div>
+
+
+	<script>
+		window.onload = function () {
+			var attrName = document.getElementById("attr-name"),
+				attrVal  = document.getElementById("attr-val"),
+				confirm  = document.getElementById("confirm"),
+				reset    = document.getElementById("reset"),
+				area     = document.getElementById("area");
+
+			function changeStyle (ele, name, val) {
+				ele.style[name] = val;
+			}
+
+			confirm.onclick = function () {
+				var propName = attrName.value.trim(),
+					propVal  = attrVal.value.trim();
+
+				changeStyle(area, propName, propVal);
+			}
+
+			reset.onclick = function  () {
+				// area.removeAttribute("style");
+				area.style.cssText = "";
+			}
+		}
+	</script>
+
+</body>
+</html>

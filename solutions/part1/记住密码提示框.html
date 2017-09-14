@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>记住密码提示框</title>
+	<style>
+		body{
+			font-size: 12px;
+		}
+		input{
+			margin: 0;
+			padding: 0;
+		}
+		
+		.wrap{
+			width: 200px;
+			margin: 0 auto;
+		}
+		#memorizePwd{
+			vertical-align: middle;
+		}
+		.tip{
+			display: none;
+			margin-top: 5px;
+			padding: 4px;
+			background-color: yellow;
+			border: 1px solid orange;
+			border-radius: 3px;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="wrap">
+		<div class="box">
+			<input type="checkbox" id="memorizePwd">
+			<label for="memorizePwd">两周内自动登录</label>
+		</div>
+		<div class="tip">
+			为了您的信息安全，请不要在网吧或公共电脑上使用此功能！
+		</div>
+	</div>
+
+	<script>
+		window.onload = function () {
+			var box = document.getElementsByClassName("box")[0];
+			var tip = document.getElementsByClassName("tip")[0];
+			box.onmouseover = function () {
+				tip.style.display = "block";
+			}
+			box.onmouseout = function () {
+				tip.style.display = "none";
+			}
+		}
+	</script>
+
+</body>
+</html>

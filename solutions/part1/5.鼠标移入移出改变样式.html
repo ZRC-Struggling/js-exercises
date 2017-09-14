@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>鼠标移入/移出改变样式</title>
+	<style>
+		#demo{
+			width: 150px;
+			height: 150px;
+			margin: 0 auto;
+			padding: 20px;
+			color: white;
+			background-color: black;
+			border-width: 12px;
+			border-style: solid;
+			border-color: black;
+			line-height: 30px;
+		}
+		/*通过css实现需求*/
+		/*#demo:hover{
+			color:red;background-color:#eee;border-color:red;cursor:crosshair
+		}*/
+	</style>
+</head>
+<body>
+	
+	<div id="demo">
+		鼠标移入改变样式<br>
+		鼠标移出恢复样式
+	</div>
+
+	<script>
+		/*通过js实现需求*/
+
+		window.onload = function () {
+			var demo = document.getElementById("demo");
+			demo.onmouseover = function (e) {
+				this.style.cssText = "color:red;background-color:#eee;border-color:red;cursor:crosshair";
+			}
+			demo.onmouseout = function (e) {
+				this.style.cssText = "";
+			}
+		}
+	</script>
+</body>
+</html>

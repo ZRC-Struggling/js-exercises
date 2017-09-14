@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>求出数组中所有数字的和</title>
+	<style>
+		body{
+			font-size: 14px;
+
+		}
+		.wrap{
+			width: 400px;
+			margin: 0 auto;
+		}
+		#sum{
+			color: red;
+			font-size: 24px;
+		}
+	</style>
+</head>
+<body>
+	
+
+	<div class="wrap">
+		<input type="text" id="txt" title="输入数字求和，数字之间必须用半角逗号分隔">
+		<button id="btn">求和</button>
+		<div class="res">结果为: <span id="sum"></span></div>
+	</div>
+
+	<script>
+		window.onload = function () {
+
+			var txt = document.querySelector("#txt");
+			var btn = document.querySelector("#btn");
+			var sum = document.querySelector("#sum");
+
+			function getSum (str) {
+				var sum = 0;
+				var arr = str.trim().split(",");
+				for(var i = 0, len = arr.length;i < len;i++){
+					sum += +arr[i];
+				}
+				return sum;
+			}
+
+			txt.onkeyup = function () {
+				// this.value = this.value.replace(/[^(\d)|(,)]/, "");
+				// 上面的语句错得比较离谱
+				// 每次释放按键时，只能删除一个错误的字符。
+				// 当输入多个字符，再释放按键，就会出问题
+				// 同时语法上还有其它错误，导致"("，")"，"|"等不符合格式的字符也能输入的情况。
+
+				this.value = this.value.replace(/[^\d,]/g, "");
+			};
+
+			btn.onclick = function () {
+				sum.innerHTML = getSum(txt.value);
+			}
+		}
+	</script>
+</body>
+</html>

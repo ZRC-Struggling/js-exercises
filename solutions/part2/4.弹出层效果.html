@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>弹出层效果</title>
+	<style>
+		.container{
+			width: 300px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		#dialog{
+			position: fixed;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background-color: #ccc;
+			z-index: 999;
+			opacity: 0.8;
+		}
+		.inner{
+			width: 460px;
+			height: 200px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			padding: 8px;
+			background-color: white;
+			border: 2px solid #eee;
+			border-radius: 8px;
+			overflow: auto;
+		}
+		.dialog-title, .dialog-content{
+			border-bottom:1px solid #ccc;
+		}
+		.dialog-title{
+			text-align: center;
+		}
+		#closeBtn{
+			position: absolute;
+			top:5px;
+			right: 5px;
+			cursor: pointer;
+			width: 24px;
+			height: 24px;
+			border-radius: 12px;
+			font-size: 18px;
+		}
+		#closeBtn:hover{
+			color: white;
+			background-color: #999;
+		}
+		#confirmBtn{
+			position: absolute;
+			right: 20px;
+			/*bottom: 0;*/
+			color: white;
+			background-color: blue;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+		<button id="btn">弹出层</button>
+	</div>
+	<div id="dialog">
+		<div class="inner">
+			<div class="dialog-title">
+				<h3>这是标题区域</h3>
+				<a id="closeBtn">×</a>
+			</div>
+			<div class="dialog-content">
+				<p>这是内容区</p>
+				<p>这是内容区</p>
+				<p>这是内容区</p>
+				<p>这是内容区</p>
+			</div>
+			<div class="dialog-footer">
+				<p>这是底部区域.......</p>
+				<button id="confirmBtn">确定</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		window.onload = function () {
+			var btn = document.getElementById("btn");
+			var dialog = document.getElementById("dialog");
+			var closeBtn = document.getElementById("closeBtn");
+			var confirmBtn = document.getElementById("confirmBtn");
+
+			btn.onclick = function () {
+				dialog.style.display = "block";
+			};
+			closeBtn.onclick = function () {
+				dialog.style.display = "none";
+			}
+			confirmBtn.onclick = function () {
+				dialog.style.display = "none";
+			}
+		}
+	</script>
+
+	<!-- note: 
+	1. “确认”按钮的位置需要进行进一步的修正
+	2. 弹出框受到其父级元素的opcity的影响，变得模糊，需要进一步修正
+	-->
+</body>
+</html>
