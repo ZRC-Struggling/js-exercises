@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>图片列表：鼠标移入移出改变图片透明度</title>
+	<style>
+		.container{
+			width: 800px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		.picBox{
+			/*display: block;*/
+			display: inline-block;
+			padding: 0 0 10px 10px;
+			border: 1px solid black;
+			font-size: 0;
+		}
+		.picBox img{
+			margin: 10px 10px 0 0;
+			border: 1px solid #ccc;
+			opacity: 0.3;
+			cursor: crosshair;
+		}
+		/*.picBox img:hover{
+			opacity: 1;
+		}
+*/	</style>
+</head>
+<body>
+	
+	<div class="container">
+		<div class="picBox">
+			<img src="imgs/1.jpg" alt="1.jpg">
+			<img src="imgs/2.jpg" alt="2.jpg">
+			<img src="imgs/3.jpg" alt="3.jpg">
+			<img src="imgs/4.jpg" alt="4.jpg">
+			<img src="imgs/5.jpg" alt="5.jpg">
+			</br>
+			<img src="imgs/6.jpg" alt="6.jpg">
+			<img src="imgs/7.jpg" alt="7.jpg">
+			<img src="imgs/8.jpg" alt="8.jpg">
+			<img src="imgs/9.jpg" alt="9.jpg">
+			<img src="imgs/10.jpg" alt="10.jpg">
+		</div>
+	</div>
+
+	<script>
+		window.onload = function  () {
+			var imgs = document.querySelectorAll("img");
+			for(var i = 0, len = imgs.length;i < len;i++){
+				imgs[i].onmouseover = function () {
+					this.style.opacity = 1;
+				}
+				imgs[i].onmouseout = function () {
+					this.style.opacity = 0.3;
+				}
+			}
+		}
+	</script>
+
+
+	<!-- note 
+	1. 体会一下br标签的作用
+	2. 体会一下下面css语句在本案例中的作用：
+	- text-align: center;
+	- display: inline-block;
+	- font-size: 0;
+	3. 从实用的角度来看，此案例使用纯css来实现更合适。
+	-->
+
+</body>
+</html>
