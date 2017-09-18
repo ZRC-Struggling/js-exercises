@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>简易网页时钟</title>
+	<style>
+		body{
+			margin: 0;
+			text-align: center;
+		}
+		#clock{
+			display: inline-block;
+			background-color: black;
+			color: white;
+			padding: 20px 30px;
+		}
+		#clock span{
+			padding: 5px 10px;
+			margin: 5px;
+			color: black;
+			background-color: white;
+			border: 2px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+	
+
+	<div id="clock">
+		
+	</div>
+	<script>
+		window.onload = function  () {
+			var clock = document.getElementById("clock");
+			function displayClock () {
+				var now = new Date(),
+					hours = now.getHours() < 10 ? ("0" + now.getHours()) : now.getHours(),
+					minutes = now.getMinutes() < 10 ? ("0" + now.getMinutes()) : now.getMinutes(),
+					seconds = now.getSeconds() < 10 ? ("0" + now.getSeconds()) : now.getSeconds();
+				clock.innerHTML = "<span>" + hours + "</span>时<span>" + minutes + "</span>分<span>" + seconds + "</span>秒";
+			}
+			displayClock();
+			setInterval(displayClock, 600);	
+		}
+	</script>
+
+	<!-- notes 
+	1. .getHours()/.getMinutes()/.getSeconds()返回的数据类型是number
+	-->
+</body>
+</html>
