@@ -26,20 +26,48 @@
 </head>
 <body>
 	
+	<!-- 方案一： -->
+	<!-- <div id="clock">
+	</div> -->
 
+	<!-- 方案二： -->
 	<div id="clock">
-		
+		<span></span>时
+		<span></span>分
+		<span></span>秒
 	</div>
 	<script>
+		/*方案一：*/
+		// window.onload = function  () {
+		// 	var clock = document.getElementById("clock");
+		// 	function displayClock () {
+		// 		var now = new Date(),
+		// 			hours = now.getHours() < 10 ? ("0" + now.getHours()) : now.getHours(),
+		// 			minutes = now.getMinutes() < 10 ? ("0" + now.getMinutes()) : now.getMinutes(),
+		// 			seconds = now.getSeconds() < 10 ? ("0" + now.getSeconds()) : now.getSeconds();
+		// 		clock.innerHTML = "<span>" + hours + "</span>时<span>" + minutes + "</span>分<span>" + seconds + "</span>秒";
+		// 	}
+		// 	displayClock();
+		// 	setInterval(displayClock, 600);	
+		// }
+
+		/*方案二：*/
 		window.onload = function  () {
-			var clock = document.getElementById("clock");
+			var clock = document.querySelector("#clock"),
+				timeSpans = clock.querySelectorAll("span");
+
+			function format (num) {
+				return num.toString().replace(/^(\d)$/, "0$1");
+			}
+
 			function displayClock () {
 				var now = new Date(),
-					hours = now.getHours() < 10 ? ("0" + now.getHours()) : now.getHours(),
-					minutes = now.getMinutes() < 10 ? ("0" + now.getMinutes()) : now.getMinutes(),
-					seconds = now.getSeconds() < 10 ? ("0" + now.getSeconds()) : now.getSeconds();
-				clock.innerHTML = "<span>" + hours + "</span>时<span>" + minutes + "</span>分<span>" + seconds + "</span>秒";
+					timeArr = [now.getHours(), now.getMinutes(), now.getSeconds()];
+				timeArr.forEach(function  (item, index) {
+					timeSpans[index].innerHTML = format(timeArr[index]);
+				});
 			}
+
 			displayClock();
 			setInterval(displayClock, 600);	
 		}
