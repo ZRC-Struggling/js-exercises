@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>累加按钮，自加1</title>
+	<style>
+		body{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	
+	<input type="button" value="0">
+	<script>
+		window.onload = function () {
+			var btn = document.querySelector("input[type='button']");
+			btn.onclick = function () {
+				this.value++;
+			}
+		}
+	</script>
+</body>
+</html>
