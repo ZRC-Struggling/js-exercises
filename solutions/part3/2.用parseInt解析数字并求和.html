@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Strugging">
+	<title>用parseInt解析数字并求和</title>
+	<style>
+		body{
+			font-size: 18px;
+			text-align: center;
+		}
+		input{
+			width: 60px;
+		}
+	</style>
+</head>
+<body>
+	
+	<input type="text">
+	+
+	<input type="text">
+	=
+	<span id="result">?</span>
+	<button>求和</button>
+	<script>
+		window.onload = function () {
+			var btn = document.querySelector("button"),
+				sum = document.querySelector("#result"),
+				inputs = document.querySelectorAll("input");
+
+			inputs.forEach(function (item, index) {
+				inputs[index].onkeyup = function () {
+					this.value = this.value.replace(/[^\d]/g, "");
+				};
+			});
+
+			btn.onclick = function () {
+				if (inputs[0].value == "") {
+					inputs[0].focus();
+					alert("请填写第一个框");
+				}else if(inputs[1].value == ""){
+					inputs[1].focus();
+					alert("请填写第二个框");
+				}else{
+					sum.innerHTML = parseInt(inputs[0].value) + parseInt(inputs[1].value);
+				}
+			};
+		}
+	</script>
+</body>
+</html>
