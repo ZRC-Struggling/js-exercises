@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>简易JS年历</title>
+	<style>
+		body{
+			text-align: center; /*使年历居中显示*/
+		}
+		#calendar{
+			display: inline-block;
+			/*注意它的值，它与其它元素的值是有关系的*/
+			padding: 8px 0 0 8px; 
+			/*margin: 0 auto;*/
+			background-color: #e8e8e8;
+			text-align: center;
+		}
+		#month{
+			/*空格被应用字体样式后会占据空间，使元素产生间距*/
+			/*此举则是清除子元素之间的间距*/
+			/*当然，后续还要给子元素设置恰当的字体值*/
+			font-size: 0; 
+		}
+		#month>div{
+			display: inline-block;
+			border: 1px solid black;
+			width: 60px;
+			/*通过行高和外边距使文字在垂直方向上居中*/
+			line-height: 20px;
+			padding:10px 0;
+			/*注意它的值，它与其它元素的值是有关系的*/
+			margin: 0 8px 8px 0; 
+			font-size: 18px;
+			font-weight: bold;
+			color: white;
+			background-color: #333;
+			cursor: pointer;
+		}
+		#festival{
+			background-color: #fafafa;
+			/*注意它的值，它与其它元素的值是有关系的*/
+			margin: 0px 8px 8px 0px; 
+			padding: 10px;
+			text-align: left;
+		}
+		#festival-title{
+			font-size: 16px;
+			font-weight: bold;
+			color: black;
+		}
+		#festival-content{
+			font-size: 12px;
+			color: #333;
+		}
+
+	</style>
+</head>
+<body>
+	
+	<div id="calendar">
+		<div id="month">
+			<div>
+				<div>1</div>
+				<div>JAN</div>
+			</div>
+			<div>
+				<div>2</div>
+				<div>FER</div>
+			</div>
+			<div>
+				<div>3</div>
+				<div>MAR</div>			
+			</div>
+			<div>
+				<div>4</div>
+				<div>APR</div>
+			</div>
+			<br>
+			<div>
+				<div>5</div>
+				<div>MAY</div>
+			</div>
+			<div>
+				<div>6</div>
+				<div>JUN</div>
+			</div>
+			<div>
+				<div>7</div>
+				<div>JUL</div>
+			</div>
+			<div>
+				<div>8</div>
+				<div>AUG</div>
+			</div>
+			<br>
+			<div>
+				<div>9</div>
+				<div>SEP</div>
+			</div>
+			<div>
+				<div>10</div>
+				<div>OCT</div>
+			</div>
+			<div>
+				<div>11</div>
+				<div>NOV</div>
+			</div>
+			<div>
+				<div>12</div>
+				<div>DEC</div>
+			</div>
+		</div>
+		<div id="festival">
+			<div id="festival-title">
+				1月节日
+			</div>
+			<div id="festival-content">
+				元旦：1月1日至3日放假三天。
+			</div>
+		</div>
+	</div>
+
+	<script>
+		window.onload = function () {
+			var months = document.querySelectorAll("#month>div"),
+				fTitle = document.querySelector("#festival-title"),
+				fContent = document.querySelector("#festival-content");
+
+			var festivalArr = [
+				"元旦：1月1日至3日放假三天",
+				"春节：2月2日至8日放假7天",
+				"妇女节：3月8日妇女节，与我无关",
+				"清明节：4月3日至5日放假三天",
+				"劳动节：4月30日至5月2日放假三天",
+				"端午节：6月4日至6日放假三天",
+				"小暑：7月7日小暑，不放假",
+				"七夕节：8月6日七夕节，不放假",
+				"中秋节：9月10日至12日放假三天",
+				"国庆节：10月1日至7日放假7天",
+				"立冬：11月8日立冬，不放假",
+				"艾滋病日：12日1日<br>废除奴隶制国际日：12月2日"
+			];
+
+			months.forEach(function (item, index, arr) {
+				months[index].onmouseover = function () {
+					var self = this;
+
+					months.forEach(function (item, i) {
+						if (index !== i) {
+							arr[i].style.cssText = "";
+						}else{
+							self.style.cssText = "background-color:white;color:#F69;";
+						}
+					});
+
+					fTitle.innerHTML = index + 1 + "月节日";
+					fContent.innerHTML = festivalArr[index];
+				}
+			});
+		}		
+	</script>
+</body>
+</html>
