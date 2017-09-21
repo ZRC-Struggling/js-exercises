@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>提示框效果</title>
+	<style>
+		body{
+			margin: 0;
+			font-size: 16px;
+			text-align: center;
+		}
+		.container{
+			width: 740px;
+			margin: 20px auto;
+			padding: 0 0 0 15px;
+			border: 1px solid black;
+			font-size: 0;
+		}
+		h3{
+			font-size: 18px;
+		}
+		h4{
+			font-size: 14px;
+		}
+		.car-brand-box{
+			width: 128px;
+			height: 128px;
+			margin: 0 15px 15px 0;
+			border: 1px solid black;
+			font-size: 14px;
+			display: inline-block;
+			/*overflow: hidden;*/
+			position: relative;
+			background-color: white
+		}
+		.car-brand-img{
+			position: absolute;
+			z-index: 999;
+			top: 0;
+			left: 0;
+			opacity: 0;
+		}
+		img{
+			vertical-align: middle;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+		<h3>名车车标展示-鼠标移过显示车标</h3>
+		<div class="car-brand-box">
+			<div class="car-brand-text">
+				<h4>DMW</h4>
+				<p>宝马汽车</p>
+			</div>
+			<div class="car-brand-img">
+				<img src="imgs/1.jpg" alt="...">
+			</div>
+		</div>
+		<div class="car-brand-box">
+			<div class="car-brand-text">
+				<h4>Alfa Romeo</h4>
+				<p>阿尔法-罗米欧</p>
+			</div>
+			<div class="car-brand-img"><img src="imgs/2.jpg" alt="..."></div>
+		</div>
+		<div class="car-brand-box">
+			<div class="car-brand-text">
+				<h4>Skoda</h4>
+				<p>斯柯达</p>
+			</div>
+			<div class="car-brand-img"><img src="imgs/3.jpg" alt="..."></div>
+		</div>
+		<div class="car-brand-box">
+			<div class="car-brand-text">
+				<h4>Volkswagen</h4>
+				<p>大众</p>
+			</div>
+			<div class="car-brand-img"><img src="imgs/4.jpg" alt="..."></div>
+		</div>
+		<div class="car-brand-box">
+			<div class="car-brand-text">
+				<h4>Saab</h4>
+				<p>萨布牌轿车</p>
+			</div>
+			<div class="car-brand-img"><img src="imgs/5.jpg" alt="..."></div>
+		</div>
+		<div class="car-brand-box">
+			<div class="car-brand-text">
+				<h4>Lamborghini</h4>
+				<p>兰博基尼</p>
+			</div>
+			<div class="car-brand-img"><img src="imgs/6.jpg" alt="..."></div>
+		</div>
+		<div class="car-brand-box">
+			<div class="car-brand-text">
+				<h4>Porsche</h4>
+				<p>保时捷</p>
+			</div>
+			<div class="car-brand-img"><img src="imgs/7.jpg" alt="..."></div>
+		</div>
+		<div class="car-brand-box">
+			<div class="car-brand-text">
+				<h4>Peugeot</h4>
+				<p>标致</p>
+			</div>
+			<div class="car-brand-img"><img src="imgs/8.jpg" alt="..."></div>
+		</div>
+		<div class="car-brand-box">
+			<div class="car-brand-text">
+				<h4>Mercedes1</h4>
+				<p>梅赛德斯奔驰</p>
+			</div>
+			<div class="car-brand-img"><img src="imgs/9.jpg" alt="..."></div>
+		</div>
+		<div class="car-brand-box">
+			<div class="car-brand-text">
+				<h4>Buick</h4>
+				<p>别克汽车</p>
+			</div>
+			<div class="car-brand-img"><img src="imgs/10.jpg" alt="..."></div>
+		</div>
+	</div>
+
+	<script>
+		window.onload = function () {
+			var carBrandBox = document.querySelectorAll(".car-brand-box"),
+				// carBrandText = document.querySelectorAll(".car-brand-text"),
+				carBrandImg = document.querySelectorAll(".car-brand-img");
+
+			carBrandBox.forEach(function (item, index) {
+				item.onmouseover = function () {
+					carBrandImg.item(index).style.cssText = "opacity:1;cursor:crosshair;border:1px solid #ccc;transform:scale(1.5)";
+				};
+				item.onmouseout = function () {
+					carBrandImg.item(index).style.cssText = "";
+				}
+			})
+		}
+	</script>
+</body>
+</html>

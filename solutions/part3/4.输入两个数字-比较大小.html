@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>输入两个数字-比较大小</title>
+	<style>
+		body{
+			text-align: center;
+			font-size: 18px;
+		}
+		input{
+			width: 60px;
+		}
+	</style>
+</head>
+<body>
+	
+	<input type="text">
+	VS
+	<input type="text">
+	<br>
+	<button>输出最大的数</button>
+	<br>
+	result: <span>?</span>
+
+	<script>
+		window.onload = function () {
+			var btn = document.querySelector("button"),
+				inputs = document.querySelectorAll("input"),
+				span = document.querySelector("span");
+
+			function format (str) {
+				return str.replace(/[^\d]/g, "");
+			}
+
+			inputs.forEach(function (item) {
+				item.onkeyup = function () {
+					this.value = format(this.value);
+				}
+			});
+
+			btn.onclick = function () {
+				span.innerHTML = inputs[0].value > inputs[1].value ? inputs[0].value : inputs[1].value;
+			}
+		}
+	</script>
+</body>
+</html>
