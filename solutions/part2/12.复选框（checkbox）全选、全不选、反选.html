@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>复选框全选、全不选、反选</title>
+	<style>
+		body{
+			margin: 0;
+			font: 18px/2 "华文行楷";
+		}
+		a{
+			text-decoration: none;
+		}
+		.container{
+			width: 150px;
+			border: 1px solid #333;
+			border-radius: 8px;
+			margin: 10px auto;
+			padding: 5px;
+		}
+		.control-btn-group{
+			border-bottom: 1px solid #333;
+			color: blue;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+		<div class="control-btn-group">
+			<input type="checkbox" id="check-btn">
+			<label for="check-btn">全选</label>
+			<a href="#" id="check-reverse">反选</a>
+		</div>
+		<div class="options-group">
+			<input type="checkbox"> 选项（一）<br>
+			<input type="checkbox"> 选项（二）<br>
+			<input type="checkbox"> 选项（三）<br>
+			<input type="checkbox"> 选项（四）<br>
+			<input type="checkbox"> 选项（五）<br>
+			<input type="checkbox"> 选项（六）<br>
+			<input type="checkbox"> 选项（七）<br>
+			<input type="checkbox"> 选项（八）<br>
+			<input type="checkbox"> 选项（九）<br>
+			<input type="checkbox"> 选项（十）<br>
+		</div>
+	</div>
+
+	<script>
+		window.onload = function () {
+			var checkBtn = document.getElementById("check-btn");
+			var checkReverse = document.getElementById("check-reverse");
+			var options = document.querySelectorAll(".options-group input");
+
+			options.forEach(function (item) {
+				item.onchange = function () {
+					var checkedLen = 0;
+					options.forEach(function  (item) {
+						if (item.checked === true) {
+							checkedLen++;
+						}
+					})
+					console.log(checkedLen);
+					if (checkedLen === options.length) {
+						console.log(2);
+						checkBtn.nextElementSibling.innerHTML = "全不选";
+						checkBtn.checked = true;
+					}else{
+						checkBtn.nextElementSibling.innerHTML = "全选";
+						checkBtn.checked = false;
+
+					}
+				}
+			})			
+
+			checkBtn.onchange = function () {
+				options.forEach(function (item) {
+					console.log("checkBtn.checked", checkBtn.checked)
+					item.checked = checkBtn.checked;
+				})
+				if (this.checked) {
+					this.nextElementSibling.innerHTML = "全不选";
+				}else{
+					this.nextElementSibling.innerHTML = "全选";
+				}
+
+			}
+
+			checkReverse.onclick = function () {
+				options.forEach(function (item) {
+					item.checked = !item.checked;
+					item.onchange();
+				})
+			}
+		}
+	</script>
+</body>
+</html>
