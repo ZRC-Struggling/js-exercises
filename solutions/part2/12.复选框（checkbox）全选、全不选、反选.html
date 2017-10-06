@@ -49,49 +49,52 @@
 
 	<script>
 		window.onload = function () {
+			// 集成全选、全不选功能的按钮
 			var checkBtn = document.getElementById("check-btn");
+			// 反选按钮
 			var checkReverse = document.getElementById("check-reverse");
+			// 所有选项
 			var options = document.querySelectorAll(".options-group input");
 
+			// 根据选中的项数，切换功能按钮的状态
+			function changeCheckState () {
+				var checkedLen = 0;
+				options.forEach(function  (item) {
+					if (item.checked === true) {
+						checkedLen++;
+					}
+				})
+
+				if (checkedLen === options.length) {
+					checkBtn.nextElementSibling.innerHTML = "全不选";
+					checkBtn.checked = true;
+				}else{
+					checkBtn.nextElementSibling.innerHTML = "全选";
+					checkBtn.checked = false;
+				}
+			}
+
+			// 单独操作某个选项
 			options.forEach(function (item) {
 				item.onchange = function () {
-					var checkedLen = 0;
-					options.forEach(function  (item) {
-						if (item.checked === true) {
-							checkedLen++;
-						}
-					})
-					console.log(checkedLen);
-					if (checkedLen === options.length) {
-						console.log(2);
-						checkBtn.nextElementSibling.innerHTML = "全不选";
-						checkBtn.checked = true;
-					}else{
-						checkBtn.nextElementSibling.innerHTML = "全选";
-						checkBtn.checked = false;
-
-					}
+					changeCheckState();
 				}
 			})			
 
+			// 全选、全不选
 			checkBtn.onchange = function () {
 				options.forEach(function (item) {
-					console.log("checkBtn.checked", checkBtn.checked)
 					item.checked = checkBtn.checked;
 				})
-				if (this.checked) {
-					this.nextElementSibling.innerHTML = "全不选";
-				}else{
-					this.nextElementSibling.innerHTML = "全选";
-				}
-
+				changeCheckState();
 			}
 
+			// 反选
 			checkReverse.onclick = function () {
 				options.forEach(function (item) {
 					item.checked = !item.checked;
-					item.onchange();
 				})
+				changeCheckState();
 			}
 		}
 	</script>
