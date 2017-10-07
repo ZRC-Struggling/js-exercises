@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>5.页面加载后累加，自加1</title>
+	<style>
+		html{
+			font-size: 18px;
+			font-family: "微软雅黑";
+		}
+		:root{
+			font-size: 20px;
+			font-family: "华文彩云"
+		}
+		body{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			text-align: center;
+			font-size: 2em;
+			padding-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id="number">0</div>
+
+	<script>
+		window.onload = function () {
+			var number = document.getElementById("number"),
+				num = 0;
+
+			function increaseByOne () {
+				number.innerHTML = ++num;
+			}
+			setInterval(function () {increaseByOne();}, 1000);
+		}
+	</script>
+</body>
+</html>
