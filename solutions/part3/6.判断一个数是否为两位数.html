@@ -32,14 +32,14 @@
 			var btn = document.getElementById("btn");
 			var num = document.getElementById("num");
 
-// 返回只含有数字的字符串
-function  containsOnlyNumber(str) {
-	if ((/\d+(\.)?(\d)*/).test(str)) {
-		return str.match(/\d+(\.)?(\d)*/)[0];
-	}else{
-		return "";
-	}
-}
+			// 返回只含有数字的字符串
+			function  containsOnlyNumber(str) {
+				if ((/\d+(\.)?(\d)*/).test(str)) {
+					return str.match(/\d+(\.)?(\d)*/)[0];
+				}else{
+					return "";
+				}
+			}
 
 			num.onkeyup = function () {
 				this.value = containsOnlyNumber(this.value);
