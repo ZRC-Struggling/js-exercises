@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="ZRC-Struggling">
+	<title>判断一个数是否为两位数</title>
+	<style>
+		body{
+			margin: 20px;
+			font: 18px/1.5 "华文行楷";
+		}
+		div{
+			width: 400px;
+			margin: 0 auto;
+		}
+		input{
+			padding-left: 8px;
+			width: 120px;
+		}
+	</style>
+</head>
+<body>
+	
+	
+	<div>
+		<input type="text" id="num">
+		<button id="btn">是否为两位数</button>
+	</div>
+
+	<script>
+		window.onload = function(){
+			var btn = document.getElementById("btn");
+			var num = document.getElementById("num");
+
+// 返回只含有数字的字符串
+function  containsOnlyNumber(str) {
+	if ((/\d+(\.)?(\d)*/).test(str)) {
+		return str.match(/\d+(\.)?(\d)*/)[0];
+	}else{
+		return "";
+	}
+}
+
+			num.onkeyup = function () {
+				this.value = containsOnlyNumber(this.value);
+			}
+
+			btn.onclick = function () {
+				alert((num.value.length === 2 ? "√" : "×"));
+			}
+		}
+	</script>
+</body>
+</html>
