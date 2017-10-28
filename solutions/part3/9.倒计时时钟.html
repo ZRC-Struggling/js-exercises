@@ -4,32 +4,95 @@
 	<meta charset="UTF-8">
 	<meta name="author" content="ZRC-Struggling">
 	<title>倒计时时钟</title>
+	<style>
+		body{
+			margin: 0;
+			font: 18px/1.5 "华文行楷";
+			text-align: center;
+		}
+		.countdown-box, .countdown{
+			display: inline-block;
+		}
+		.countdown-box{
+			width: 320px;
+			margin: 20px;
+			background-color: #000;
+			color: #fff;
+		}
+		input, button{
+			font: 18px/1.5 "华文行楷";
+		}
+		.minutes, .seconds{
+			background-color: #fff;
+			color: #000;
+			width: 40px;
+			line-height: 1.5;
+			margin: 10px;
+			text-align: center;
+		}
+		.startUp-btn{
+			color: #fff;
+		    border-radius: 8px;
+		    display: inline-block;
+		    width: 300px;
+		    height: 40px;
+		    background-color: #0fb81e;
+		    border: none;
+		    font-size: 24px;
+		    margin: 15px 0;
+		}
+		.cancel{
+			background-color: #a23b3c;
+		}
+	</style>
 </head>
 <body>
 	
-	<div class="timeDown-block">
-		<div class="timeLeft">
+	<div class="countdown-box">
+		<div class="countdown">
 			<input type="text" class="minutes">分钟
 			<input type="text" class="seconds">秒
 		</div>
 		<div class="action">
-			<button class="activate-btn">启动</button>
+			<button class="startUp-btn">启动</button>
 		</div>
 	</div>
 	
 	<script>
 		window.onload = function () {
-			var timeLeft = 100; // 单位为秒
-			var activateBtn = document.querySelector(".activate-btn"),
+			var countdown = 100; // 单位为秒
+			var startUpBtn = document.querySelector(".startUp-btn"),
 				minutes = document.querySelector(".minutes"),
-				seconds = document.querySelector("seconds");
+				seconds = document.querySelector(".seconds"),
+				timer = null;
 
-			minutes.value = timeLeft/60;
-			seconds.value = timeLeft%60;
-
-			activateBtn.onclick = function () {
-				setInterval(handler: any, timeout?: long, arguments...: any)
+			// 为仅含一位的数字添加前导零
+			function format (num) {
+				return num.toString().replace(/^(\d)$/, "0$1");
 			}
+
+			minutes.value = format(parseInt(countdown/60));
+			seconds.value = format(countdown%60);
+
+			startUpBtn.onclick = function () {
+				if (this.classList.contains("cancel")) {
+					this.innerHTML = "启动";
+					this.classList.remove("cancel");
+					clearInterval(timer);
+				}else{
+					this.innerHTML = "取消";
+					this.classList.add("cancel");
+					timer = setInterval(function () {
+						countdown--;
+						minutes.value = format(parseInt(countdown/60));
+						seconds.value = format(countdown%60);
+						if (countdown === 0) {
+							clearInterval(timer);
+						}
+					}, 1000);
+				}
+				
+			};
 		}
 	</script>
 </body>
