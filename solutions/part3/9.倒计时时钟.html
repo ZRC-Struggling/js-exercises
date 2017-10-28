@@ -30,7 +30,7 @@
 			margin: 10px;
 			text-align: center;
 		}
-		.startUp-btn{
+		.startup-btn{
 			color: #fff;
 		    border-radius: 8px;
 		    display: inline-block;
@@ -53,15 +53,15 @@
 			<input type="text" class="minutes">分钟
 			<input type="text" class="seconds">秒
 		</div>
-		<div class="action">
-			<button class="startUp-btn">启动</button>
+		<div>
+			<button class="startup-btn">启动</button>
 		</div>
 	</div>
 	
 	<script>
 		window.onload = function () {
 			var countdown = 100; // 单位为秒
-			var startUpBtn = document.querySelector(".startUp-btn"),
+			var startupBtn = document.querySelector(".startup-btn"),
 				minutes = document.querySelector(".minutes"),
 				seconds = document.querySelector(".seconds"),
 				timer = null;
@@ -74,21 +74,23 @@
 			minutes.value = format(parseInt(countdown/60));
 			seconds.value = format(countdown%60);
 
-			startUpBtn.onclick = function () {
+			startupBtn.onclick = function () {
+				// 点击“取消”按钮
 				if (this.classList.contains("cancel")) {
 					this.innerHTML = "启动";
 					this.classList.remove("cancel");
 					clearInterval(timer);
-				}else{
+				}else{ // 点击“启动”按钮
 					this.innerHTML = "取消";
 					this.classList.add("cancel");
 					timer = setInterval(function () {
+						if (countdown <= 0) {
+							clearInterval(timer);
+							return;
+						}
 						countdown--;
 						minutes.value = format(parseInt(countdown/60));
 						seconds.value = format(countdown%60);
-						if (countdown === 0) {
-							clearInterval(timer);
-						}
 					}, 1000);
 				}
 				
