@@ -26,12 +26,12 @@
 		}
 		#navbar>ul{
 			padding: 5px 20px;
-		}
-		#navbar li{
-			display: inline-block;	
+			/*另一种实现方式（method 2）*/
+			/*position: relative;*/
 		}
 		#navbar>ul>li{
 			position: relative;
+			display: inline-block;	
 		}
 		#navbar>ul>li:hover{
 			background-color: #658eb7;
@@ -57,16 +57,21 @@
 		}
 		#navbar li ul{
 			position: absolute;
-			width: 800px; /*为了使子菜单横向显示的拙劣方法*/
+			width: 600px; /*为了使子菜单横向显示的拙劣方法*/
 			display: none;
+			font-size: 0;
+		}
+		#navbar li ul li{
+			float: left;
 		}
 		#navbar li ul a{
 			background-color: #225DC8;
 			opacity: 0.9;
 			font-size: 14px;
-			min-width: 130px;
+			min-width: 60px;
 			text-align: center;
 			margin-top: 1px;
+			margin-right: 1px;
 		}
 		#navbar li ul a:hover{
 			background-color: #225d98;
@@ -189,7 +194,8 @@
 			}
 		}
 		window.onload = function () {
-			var navItems = gc("nav-item"),
+			var navbar   = gi("navbar"),
+			    navItems = gc("nav-item"),
 				subMenus = gc("sub-menu");
 			for(var i = navItems.length - 1;i >= 0;i--){
 				navItems[i].onmouseover = function () {
@@ -198,6 +204,19 @@
 						subMenus[j].style.display = "none";
 					}
 					subMenu.style.display = "block";
+					// 处理横向二级菜单的位置
+					if (this.offsetLeft + subMenu.offsetWidth < navbar.offsetWidth + navbar.offsetLeft ) {
+						subMenu.style.left = 0;
+					}else{
+						subMenu.style.left = -300 + "px";
+					}
+					// 另一种实现方式（method 2）
+					// 处理横向二级菜单的位置
+					// if (this.offsetLeft + subMenu.offsetWidth < navbar.offsetWidth + navbar.offsetLeft ) {
+					// 	subMenu.style.left = this.offsetLeft;
+					// }else{
+					// 	subMenu.style.right = 0;
+					// }
 				}
 				navItems[i].onmouseout = function () {
 					var subMenu = gc("sub-menu", this)[0];
