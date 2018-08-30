@@ -4,58 +4,73 @@
 <meta charset="utf-8">
 <meta name="author" content="ZRC-Struggling">
 <title>控制Div属性</title>
-<style>
-	.wrap{
-		width: 400px;
-		margin: 10px auto;
-	}
-	.btnGroup{
-		width: 300px;
-		margin: 0 auto;
-		/*按钮的默认display属性是'inline-block', 可以通过text-align属性实现在容器中居中*/
-		text-align: center; 
-	}
-	.area{
-		width: 100px;
-		height: 100px;
-		margin: 20px auto;
-		background-color: black;
-	}
-</style>
+	<style type="text/css">
+		#wrap{
+			width: 360px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		#view{
+			display: inline-block;
+			width: 100px;
+			height: 100px;
+			background-color: black;
+			margin-top: 10px;
+		}
+	</style>
 </head>
-
 <body>
-	<div class="wrap">
-		<div class="btnGroup">
-			<button class="wider">变宽</button>
-			<button class="higher">变高</button>
-			<button class="toRed">变色</button>
-			<button class="hideArea">隐藏</button>
-			<button class="showArea">显示</button>
-			<button class="resetArea">重置</button>
+	<div id="wrap">
+		<div class="operations">
+			<button data-oper="wider">变宽</button>
+			<button data-oper="highter">变高</button>
+			<button data-oper="changeColor">变色</button>
+			<button data-oper="hide">隐藏</button>
+			<button data-oper="reset">重置</button>
 		</div>
-		<div class="area"></div>
+		<div id="view"></div>		
 	</div>
 
-	<script>
-	window.onload = function () {
-		var area = document.querySelector(".area");
-		var btns = document.querySelectorAll(".btnGroup button"); 
-		var arr = [
-					["width", "200px"], // wider
-					["height", "200px"], // higher
-					["background-color", "red"], // toRed
-					["display", "none"], // hideArea
-					["display", "block"], // showArea
-					["cssText", ""] // resetAres
-				  ];
-
-		btns.forEach(function (ele,i) {
-			ele.onclick = function () {
-				area.style[arr[i][0]] = arr[i][1];
+	<script type="text/javascript">
+		(function () {
+			function changeElementStyle(ele, oper) {
+				var eleStyle = getComputedStyle(ele);
+				var step =  5; // 宽度/高度每次改变的px值
+				switch(event.target.dataset['oper']){
+					case 'wider':
+						var width = eleStyle.getPropertyValue('width');
+						ele.style.width = parseInt(width, 10) + step + 'px';
+						break;
+					case 'highter':
+						var height = eleStyle.getPropertyValue('height');
+						ele.style.height = parseInt(height, 10) + step + 'px';
+						break;
+					case 'changeColor':
+						var backgroundColor = eleStyle.getPropertyValue('background-color');
+						// 背景色采用随机的灰度值
+						ele.style.backgroundColor = backgroundColor.replace(/\d+/, Math.ceil(Math.random() * 255));
+						break;
+					case 'hide':
+						ele.style.display = 'none';
+						break;
+					case 'reset':
+						ele.style.cssText = '';
+						break;
+					default:
+						break;
+				};
 			}
-		});
-	}
+
+			var view = document.querySelector('#view');
+			var btns = document.querySelectorAll('.operations button');
+
+			btns.forEach(function (btn) {
+				btn.addEventListener('click', function (event) {
+					var operation = event.target.dataset['oper'];
+					changeElementStyle(view, operation);
+				});
+			});
+		}());
 	</script>
 </body>
 </html>
